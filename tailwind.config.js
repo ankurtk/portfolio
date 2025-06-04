@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -18,6 +19,7 @@ export default {
           700: '#4338CA',
           800: '#3730A3',
           900: '#312E81',
+          950: '#1e1b4b',
         },
       },
       animation: {
