@@ -2,19 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from './theme-toggle';
-import { useTheme } from './theme-context';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const { theme } = useTheme(); // Get current theme
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Active section detection
       const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
@@ -66,11 +63,6 @@ export const Header: React.FC = () => {
       });
     }
   };
-
-  // Debug: Log current theme
-  useEffect(() => {
-    console.log('Header: Current theme is', theme);
-  }, [theme]);
 
   const headerVariants = {
     hidden: { y: -100, opacity: 0 },
@@ -140,20 +132,35 @@ export const Header: React.FC = () => {
     }
   };
 
+  const handleResumeDownload = () => {
+    try {
+      const link = document.createElement('a');
+      link.href = '/resume.pdf';
+      link.download = 'resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      alert('Failed to download resume. Please try again later.');
+      window.open('/resume.pdf', '_blank');
+    }
+
+  };
+
   return (
     <motion.header
       variants={headerVariants}
       initial="hidden"
       animate="visible"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl py-3 border-b border-gray-100 dark:border-gray-800'
-          : 'bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm py-6'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl py-3'
+          : 'bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm py-6 border-b-0'
       }`}
     >
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <motion.a
             href="#hero"
             variants={logoVariants}
@@ -175,7 +182,6 @@ export const Header: React.FC = () => {
             </span>
           </motion.a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-1 items-center">
             {navLinks.map((link, index) => {
               const isActive = activeSection === link.href.slice(1);
@@ -208,7 +214,6 @@ export const Header: React.FC = () => {
                 >
                   {link.name}
 
-                  {/* Active indicator */}
                   {isActive && (
                     <motion.div
                       className="absolute bottom-0 left-1/2 w-1 h-1 bg-indigo-600 dark:bg-indigo-400 rounded-full"
@@ -222,7 +227,6 @@ export const Header: React.FC = () => {
               );
             })}
 
-            {/* Theme Toggle */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -232,7 +236,6 @@ export const Header: React.FC = () => {
               <ThemeToggle />
             </motion.div>
 
-            {/* Resume Button */}
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -243,15 +246,14 @@ export const Header: React.FC = () => {
                 boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleResumeDownload}
             >
               <Download size={16} className="mr-2" />
               Resume
             </motion.button>
           </nav>
 
-          {/* Mobile Navigation Toggle */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* Mobile Theme Toggle */}
             <ThemeToggle />
 
             <motion.button
@@ -276,7 +278,6 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -286,7 +287,6 @@ export const Header: React.FC = () => {
             exit="hidden"
             className="fixed inset-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg z-40 flex flex-col justify-center items-center md:hidden"
           >
-            {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 opacity-50" />
 
             <motion.nav
@@ -328,8 +328,9 @@ export const Header: React.FC = () => {
                   boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={handleResumeDownload}
               >
-                <Download size={20} className="mr-3" />
+                <Download size={20} className="mr-3"/>
                 Download Resume
               </motion.button>
             </motion.nav>

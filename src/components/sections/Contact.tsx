@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin,CheckCircle, AlertCircle } from 'lucide-react';
 
 interface FormData {
   name: string;
@@ -32,21 +32,21 @@ export const Contact: React.FC = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'contact@johndoe.com',
-      href: 'mailto:contact@johndoe.com',
+      value: 'ankurtk55@gmail.com',
+      href: 'https://mail.google.com/mail/?view=cm&fs=1&to=ankurtk55@gmail.com',
       color: 'from-red-500 to-pink-500 dark:from-red-400 dark:to-pink-400'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
+      value: '+91 6005032290',
       href: 'tel:+15551234567',
       color: 'from-green-500 to-emerald-500 dark:from-green-400 dark:to-emerald-400'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Bengaluru, KA',
       href: '#',
       color: 'from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400'
     }
@@ -55,22 +55,16 @@ export const Contact: React.FC = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com',
+      href: 'https://github.com/ankurtk',
       label: 'GitHub',
       color: 'hover:text-gray-900 dark:hover:text-gray-100'
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/ankur-tikoo-635674206/',
       label: 'LinkedIn',
       color: 'hover:text-blue-600 dark:hover:text-blue-400'
     },
-    {
-      icon: Twitter,
-      href: 'https://twitter.com',
-      label: 'Twitter',
-      color: 'hover:text-blue-500 dark:hover:text-blue-300'
-    }
   ];
 
   const validateForm = (): boolean => {
@@ -109,17 +103,31 @@ export const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+    const response = await fetch('https://formspree.io/f/manjnjdo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      })
+    });
 
-      // Reset form on success
+    if (response.ok) {
       setFormData({ name: '', email: '', subject: '', message: '' });
       setSubmitStatus('success');
-    } catch {
+    } else {
       setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
     }
+  } catch (error) {
+    console.error('Form submission failed:', error);
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+  }
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -261,6 +269,8 @@ export const Contact: React.FC = () => {
                   <motion.a
                     key={index}
                     href={info.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex items-center p-4 bg-gradient-to-r from-gray-50 to-white dark:from-gray-700 dark:to-gray-800 rounded-xl hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/30 dark:hover:to-purple-900/30 transition-all duration-300 border border-gray-100 dark:border-gray-600"
                     variants={cardVariants}
                     whileHover={{

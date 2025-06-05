@@ -2,13 +2,12 @@ export const skillsData = {
   categories: [
     {
       title: "Frontend Development",
-      icon: "🎨",
+      icon: "<>",
       skills: [
         { name: "React", icon: "reactjs", proficiency: "Expert" },
         { name: "TypeScript", icon: "typescript", proficiency: "Advanced" },
         { name: "Next.js", icon: "nextjs2", proficiency: "Advanced" },
         { name: "Tailwind CSS", icon: "tailwindcss", proficiency: "Expert" },
-        { name: "Vue.js", icon: "vuejs", proficiency: "Intermediate" },
         { name: "JavaScript", icon: "js", proficiency: "Expert" },
         { name: "HTML5", icon: "html5", proficiency: "Expert" },
         { name: "CSS3", icon: "css3", proficiency: "Expert" }
@@ -16,39 +15,31 @@ export const skillsData = {
     },
     {
       title: "Backend Development",
-      icon: "⚙️",
+      icon: "⚙",
       skills: [
         { name: "Node.js", icon: "nodejs", proficiency: "Expert" },
         { name: "Python", icon: "python", proficiency: "Advanced" },
         { name: "Express.js", icon: "graphql", proficiency: "Expert" },
-        { name: "GraphQL", icon: "graphql", proficiency: "Advanced" },
         { name: "FastAPI", icon: "graphql", proficiency: "Advanced" },
-        { name: "Django", icon: "django", proficiency: "Intermediate" }
       ]
     },
     {
       title: "Database & Cloud",
-      icon: "☁️",
+      icon: "☁",
       skills: [
         { name: "MongoDB", icon: "mongodb", proficiency: "Advanced" },
         { name: "PostgreSQL", icon: "postgresql", proficiency: "Advanced" },
-        { name: "Redis", icon: "redis", proficiency: "Intermediate" },
-        { name: "AWS", icon: "aws", proficiency: "Advanced" },
-        { name: "Docker", icon: "docker", proficiency: "Intermediate" },
         { name: "Firebase", icon: "firebase", proficiency: "Advanced" },
         { name: "MySQL", icon: "mysql", proficiency: "Advanced" },
-        { name: "Vercel", icon: "mysql", proficiency: "Expert" }
       ]
     },
     {
       title: "Tools & Workflow",
-      icon: "🛠️",
+      icon: "🛠",
       skills: [
         { name: "Git", icon: "git", proficiency: "Expert" },
         { name: "GitHub", icon: "github", proficiency: "Expert" },
         { name: "VS Code", icon: "vscode", proficiency: "Expert" },
-        { name: "Figma", icon: "figma", proficiency: "Advanced" },
-        { name: "Webpack", icon: "webpack", proficiency: "Intermediate" },
         { name: "Jest", icon: "jest", proficiency: "Advanced" },
         { name: "npm", icon: "npm", proficiency: "Expert" },
         { name: "Linux", icon: "linux", proficiency: "Intermediate" }

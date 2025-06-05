@@ -51,8 +51,8 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold text-white dark:text-gray-100 mb-4 transition-colors duration-300">Contact</h3>
             <ul className="space-y-2 text-gray-400 dark:text-gray-500 transition-colors duration-300">
-              <li>Email: contact@example.com</li>
-              <li>Location: San Francisco, CA</li>
+              <li>Email: ankurtk55@gmail.com</li>
+              <li>Location: Bengaluru, KA</li>
               <li>Available for remote work</li>
             </ul>
           </div>

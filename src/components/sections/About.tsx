@@ -47,6 +47,22 @@ export const About: React.FC = () => {
     }
   };
 
+  const handleResumeDownload = () => {
+    try {
+      const link = document.createElement('a');
+      link.href = '/resume.pdf';
+      link.download = 'resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      alert('Failed to download resume. Please try again later.');
+      window.open('/resume.pdf', '_blank');
+    }
+
+  };
+
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-gray-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-950 relative overflow-hidden transition-colors duration-300">
       {/* Background Elements */}
@@ -125,7 +141,7 @@ export const About: React.FC = () => {
             >
               <div className="aspect-[4/5] relative">
                 <img
-                  src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  src="/myimage.jpg"
                   alt="Professional headshot"
                   className="w-full h-full object-cover"
                 />
@@ -193,7 +209,7 @@ export const About: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed transition-colors duration-300">
-                I'm a passionate full-stack developer with over 5 years of experience creating innovative web and mobile applications.
+                I'm a passionate full-stack developer with over 3 years of experience creating innovative web and mobile applications.
                 My journey in tech began with a curiosity for how digital products are built, leading me to master a wide range of technologies
                 and frameworks.
               </p>
@@ -213,9 +229,9 @@ export const About: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {[
-                { icon: '🎯', label: 'Focus', value: 'User Experience' },
-                { icon: '💼', label: 'Experience', value: '5+ Years' },
-                { icon: '🌍', label: 'Location', value: 'San Francisco' },
+                { icon: '🎯', label: 'Focus', value: 'Full-stack' },
+                { icon: '💼', label: 'Experience', value: '3 Years' },
+                { icon: '🌍', label: 'Location', value: 'Bengaluru' },
                 { icon: '📧', label: 'Email', value: 'Available' }
               ].map((item, index) => (
                 <motion.div
@@ -256,17 +272,17 @@ export const About: React.FC = () => {
               >
                 Get In Touch
               </motion.a>
-              <motion.a
-                href="/resume.pdf"
+              <motion.button
                 className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 font-medium py-3 px-6 rounded-lg transition-all duration-300 text-center"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)"
                 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={handleResumeDownload}
               >
                 Download Resume
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
         </motion.div>

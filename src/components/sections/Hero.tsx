@@ -148,7 +148,7 @@ export const Hero: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            John Doe
+            Ankur
           </motion.span>
         </motion.h1>
 
